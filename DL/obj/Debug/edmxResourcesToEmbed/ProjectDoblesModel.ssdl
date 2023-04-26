@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbJuegoDoblesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="partidas">
+    <Key>
+      <PropertyRef Name="idPartida" />
+      <PropertyRef Name="idJugador" />
+    </Key>
+    <Property Name="idPartida" Type="int" Nullable="false" />
+    <Property Name="idJugador" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="tiempoJugado" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbJugadores">
+    <Key>
+      <PropertyRef Name="cedula" />
+    </Key>
+    <Property Name="cedula" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="55" />
+    <Property Name="nickname" Type="varchar" MaxLength="55" />
+    <Property Name="fechaIngreso" Type="datetime" />
+    <Property Name="contrasena" Type="varchar" MaxLength="55" />
+  </EntityType>
+  <Association Name="FK_PartidaJugador">
+    <End Role="tbJugadores" Type="Self.tbJugadores" Multiplicity="1" />
+    <End Role="partidas" Type="Self.partidas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbJugadores">
+        <PropertyRef Name="cedula" />
+      </Principal>
+      <Dependent Role="partidas">
+        <PropertyRef Name="idJugador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbJuegoDoblesModelStoreContainer">
+    <EntitySet Name="partidas" EntityType="Self.partidas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbJugadores" EntityType="Self.tbJugadores" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_PartidaJugador" Association="Self.FK_PartidaJugador">
+      <End Role="tbJugadores" EntitySet="tbJugadores" />
+      <End Role="partidas" EntitySet="partidas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbJuegoDoblesModelStoreContainer" CdmEntityContainer="dbJuegoDoblesEntities">
+    <EntitySetMapping Name="partidas">
+      <EntityTypeMapping TypeName="dbJuegoDoblesModel.partidas">
+        <MappingFragment StoreEntitySet="partidas">
+          <ScalarProperty Name="tiempoJugado" ColumnName="tiempoJugado" />
+          <ScalarProperty Name="idJugador" ColumnName="idJugador" />
+          <ScalarProperty Name="idPartida" ColumnName="idPartida" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbJugadores">
+      <EntityTypeMapping TypeName="dbJuegoDoblesModel.tbJugadores">
+        <MappingFragment StoreEntitySet="tbJugadores">
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

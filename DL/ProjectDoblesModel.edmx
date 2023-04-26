@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbJuegoDoblesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="partidas">
+          <Key>
+            <PropertyRef Name="idPartida" />
+            <PropertyRef Name="idJugador" />
+          </Key>
+          <Property Name="idPartida" Type="int" Nullable="false" />
+          <Property Name="idJugador" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="tiempoJugado" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbJugadores">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="55" />
+          <Property Name="nickname" Type="varchar" MaxLength="55" />
+          <Property Name="fechaIngreso" Type="datetime" />
+          <Property Name="contrasena" Type="varchar" MaxLength="55" />
+        </EntityType>
+        <Association Name="FK_PartidaJugador">
+          <End Role="tbJugadores" Type="Self.tbJugadores" Multiplicity="1" />
+          <End Role="partidas" Type="Self.partidas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbJugadores">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="partidas">
+              <PropertyRef Name="idJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbJuegoDoblesModelStoreContainer">
+          <EntitySet Name="partidas" EntityType="Self.partidas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbJugadores" EntityType="Self.tbJugadores" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PartidaJugador" Association="Self.FK_PartidaJugador">
+            <End Role="tbJugadores" EntitySet="tbJugadores" />
+            <End Role="partidas" EntitySet="partidas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbJuegoDoblesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbJuegoDoblesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="partidas" EntityType="dbJuegoDoblesModel.partidas" />
+          <EntitySet Name="tbJugadores" EntityType="dbJuegoDoblesModel.tbJugadores" />
+          <AssociationSet Name="FK_PartidaJugador" Association="dbJuegoDoblesModel.FK_PartidaJugador">
+            <End Role="tbJugadores" EntitySet="tbJugadores" />
+            <End Role="partidas" EntitySet="partidas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="partidas">
+          <Key>
+            <PropertyRef Name="idPartida" />
+            <PropertyRef Name="idJugador" />
+          </Key>
+          <Property Name="idPartida" Type="Int32" Nullable="false" />
+          <Property Name="idJugador" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="tiempoJugado" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbJugadores" Relationship="dbJuegoDoblesModel.FK_PartidaJugador" FromRole="partidas" ToRole="tbJugadores" />
+        </EntityType>
+        <EntityType Name="tbJugadores">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="nickname" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+          <Property Name="contrasena" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="partidas" Relationship="dbJuegoDoblesModel.FK_PartidaJugador" FromRole="tbJugadores" ToRole="partidas" />
+        </EntityType>
+        <Association Name="FK_PartidaJugador">
+          <End Type="dbJuegoDoblesModel.tbJugadores" Role="tbJugadores" Multiplicity="1" />
+          <End Type="dbJuegoDoblesModel.partidas" Role="partidas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbJugadores">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="partidas">
+              <PropertyRef Name="idJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbJuegoDoblesModelStoreContainer" CdmEntityContainer="dbJuegoDoblesEntities">
+          <EntitySetMapping Name="partidas">
+            <EntityTypeMapping TypeName="dbJuegoDoblesModel.partidas">
+              <MappingFragment StoreEntitySet="partidas">
+                <ScalarProperty Name="tiempoJugado" ColumnName="tiempoJugado" />
+                <ScalarProperty Name="idJugador" ColumnName="idJugador" />
+                <ScalarProperty Name="idPartida" ColumnName="idPartida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbJugadores">
+            <EntityTypeMapping TypeName="dbJuegoDoblesModel.tbJugadores">
+              <MappingFragment StoreEntitySet="tbJugadores">
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

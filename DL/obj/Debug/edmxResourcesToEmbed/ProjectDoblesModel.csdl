@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbJuegoDoblesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="dbJuegoDoblesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="partidas" EntityType="dbJuegoDoblesModel.partidas" />
+    <EntitySet Name="tbJugadores" EntityType="dbJuegoDoblesModel.tbJugadores" />
+    <AssociationSet Name="FK_PartidaJugador" Association="dbJuegoDoblesModel.FK_PartidaJugador">
+      <End Role="tbJugadores" EntitySet="tbJugadores" />
+      <End Role="partidas" EntitySet="partidas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="partidas">
+    <Key>
+      <PropertyRef Name="idPartida" />
+      <PropertyRef Name="idJugador" />
+    </Key>
+    <Property Name="idPartida" Type="Int32" Nullable="false" />
+    <Property Name="idJugador" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="tiempoJugado" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbJugadores" Relationship="dbJuegoDoblesModel.FK_PartidaJugador" FromRole="partidas" ToRole="tbJugadores" />
+  </EntityType>
+  <EntityType Name="tbJugadores">
+    <Key>
+      <PropertyRef Name="cedula" />
+    </Key>
+    <Property Name="cedula" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+    <Property Name="nickname" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+    <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+    <Property Name="contrasena" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="partidas" Relationship="dbJuegoDoblesModel.FK_PartidaJugador" FromRole="tbJugadores" ToRole="partidas" />
+  </EntityType>
+  <Association Name="FK_PartidaJugador">
+    <End Type="dbJuegoDoblesModel.tbJugadores" Role="tbJugadores" Multiplicity="1" />
+    <End Type="dbJuegoDoblesModel.partidas" Role="partidas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbJugadores">
+        <PropertyRef Name="cedula" />
+      </Principal>
+      <Dependent Role="partidas">
+        <PropertyRef Name="idJugador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

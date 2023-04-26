@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d03b445da8ed4444834045d57fe13192" Name="Diagram1">
+        <EntityTypeShape EntityType="dbJuegoDoblesModel.partidas" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="dbJuegoDoblesModel.tbJugadores" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="dbJuegoDoblesModel.FK_PartidaJugador" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

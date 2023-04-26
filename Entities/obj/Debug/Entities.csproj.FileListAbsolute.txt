@@ -1,0 +1,12 @@
+C:\repos\JuegoDoble\Entities\bin\Debug\Entities.dll.config
+C:\repos\JuegoDoble\Entities\bin\Debug\Entities.dll
+C:\repos\JuegoDoble\Entities\bin\Debug\Entities.pdb
+C:\repos\JuegoDoble\Entities\bin\Debug\EntityFramework.dll
+C:\repos\JuegoDoble\Entities\bin\Debug\EntityFramework.SqlServer.dll
+C:\repos\JuegoDoble\Entities\bin\Debug\EntityFramework.xml
+C:\repos\JuegoDoble\Entities\bin\Debug\EntityFramework.SqlServer.xml
+C:\repos\JuegoDoble\Entities\obj\Debug\Entities.csproj.AssemblyReference.cache
+C:\repos\JuegoDoble\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\repos\JuegoDoble\Entities\obj\Debug\Entities.csproj.CopyComplete
+C:\repos\JuegoDoble\Entities\obj\Debug\Entities.dll
+C:\repos\JuegoDoble\Entities\obj\Debug\Entities.pdb
